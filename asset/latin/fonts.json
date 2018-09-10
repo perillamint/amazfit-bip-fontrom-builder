@@ -1,0 +1,47 @@
+{
+    "E1.FNT": {
+        "name": "굵은멋꼴",
+        "width": 8,
+        "height": 16
+    },
+    "E2.FNT": {
+        "name": "둥근모꼴",
+        "width": 8,
+        "height": 16
+    },
+    "E3.FNT": {
+        "name": "버금멋꼴",
+        "width": 8,
+        "height": 16
+    },
+    "E4_2.FNT": {
+        "name": "버금멋꼴2",
+        "width": 8,
+        "height": 16
+    },
+    "E4_3.FNT": {
+        "name": "버금멋꼴3",
+        "width": 8,
+        "height": 16
+    },
+    "E5.FNT": {
+        "name": "틈멋꼴",
+        "width": 8,
+        "height": 16
+    },
+    "E6.FNT": {
+        "name": "중태깍기꼴",
+        "width": 8,
+        "height": 16
+    },
+    "E8.FNT": {
+        "name": "중태세모꼴",
+        "width": 8,
+        "height": 16
+    },
+    "VGA-ROM.F16": {
+        "name": "VGA ROM BIOS",
+        "width": 8,
+        "height": 16
+    }
+}
