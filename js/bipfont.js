@@ -1,6 +1,10 @@
 let exportFlag = false;
-if (module !== undefined) {
-    exportFlag = true;
+try {
+    if (module !== undefined) {
+        exportFlag = true;
+    }
+} catch (_e) {
+    //
 }
 
 'use strict';
