@@ -36,10 +36,10 @@ class FontManager {
     }
 
     async downloadFontAssets() {
-        const vendorfntmeta = (await axios.get('/asset/vendor/fonts.json')).data;
+        const vendorfntmeta = (await axios.get('./asset/vendor/fonts.json')).data;
         const vendorfonts = Object.keys(vendorfntmeta);
         for (const i of vendorfonts) {
-            const fontbin = (await axios.get(`/asset/vendor/${i}`, {responseType: 'arraybuffer'})).data;
+            const fontbin = (await axios.get(`./asset/vendor/${i}`, {responseType: 'arraybuffer'})).data;
             this._fonts.vendor.push({
                 binary: Buffer.from(fontbin),
                 filename: i,
@@ -47,11 +47,11 @@ class FontManager {
             });
         }
 
-        const latinfntmeta = (await axios.get('/asset/latin/fonts.json')).data;
+        const latinfntmeta = (await axios.get('./asset/latin/fonts.json')).data;
         const latinfonts = Object.keys(latinfntmeta);
 
         for (const i of latinfonts) {
-            const fontbin = (await axios.get(`/asset/latin/${i}`, {responseType: 'arraybuffer'})).data;
+            const fontbin = (await axios.get(`./asset/latin/${i}`, {responseType: 'arraybuffer'})).data;
             const width = latinfntmeta[i].width;
             const height = latinfntmeta[i].height;
             this._fonts.latin.push({
@@ -61,11 +61,11 @@ class FontManager {
             });
         }
 
-        const dkb844fntmeta = (await axios.get('/asset/dkb844/fonts.json')).data;
+        const dkb844fntmeta = (await axios.get('./asset/dkb844/fonts.json')).data;
         const dkb844fonts = Object.keys(dkb844fntmeta);
 
         for (const i of dkb844fonts) {
-            const fontbin = (await axios.get(`/asset/dkb844/${i}`, {responseType: 'arraybuffer'})).data;
+            const fontbin = (await axios.get(`./asset/dkb844/${i}`, {responseType: 'arraybuffer'})).data;
             const width = dkb844fntmeta[i].width;
             const height = dkb844fntmeta[i].height;
             this._fonts.dkb844.push({
@@ -75,11 +75,11 @@ class FontManager {
             });
         }
 
-        const fontxfntmeta = (await axios.get('/asset/fontx/fonts.json')).data;
+        const fontxfntmeta = (await axios.get('./asset/fontx/fonts.json')).data;
         const fontxfonts = Object.keys(fontxfntmeta);
 
         for (const i of fontxfonts) {
-            const fontbin = (await axios.get(`/asset/fontx/${i}`, {responseType: 'arraybuffer'})).data;
+            const fontbin = (await axios.get(`./asset/fontx/${i}`, {responseType: 'arraybuffer'})).data;
             this._fonts.fontx.push({
                 renderer: new FontXRenderer(Buffer.from(fontbin)),
                 filename: i,
