@@ -6,28 +6,71 @@ let bms = null;
 function renderAndAddGlyph(bms, renderer, start, end) {
     for(let i = start; i <= end; i++) {
         try {
-            if (i === 0x30C4) {console.log('asdf!!');}
             const bin = renderer.renderChar(i);
-            if (i === 0x30C4) {console.log('asdf!!');}
             bms.addGlyph(i, bin, 4, renderer.getDimension().width);
-            if (i === 0x30C4) {console.log('asdf!!');}
         } catch (e) {}
     }
 }
 
-async function loadfonts(evt) {
-    fm = new EntryPoint.FontManager();
-    await fm.downloadFontAssets();
+function childCleaner(elem) {
+    while(elem.firstChild) {
+        elem.removeChild(elem.firstChild);
+    }
 }
 
-function renderFonts() {
+function getFontOption(font, value) {
+    const option = document.createElement('option');
+    option.text = `${font.filename} - ${font.name}`;
+    option.value = value;
+
+    return option;
+}
+
+async function loadFonts(evt) {
+    fm = new EntryPoint.FontManager();
+    await fm.downloadFontAssets();
+
+    const fontList = fm.getFontList();
+
+    const latinromlist = document.getElementById('latinrom');
+    const dkbromlist = document.getElementById('dkb844rom');
+    const fontxromlist = document.getElementById('fontxrom');
+
+    childCleaner(latinromlist);
+    childCleaner(dkbromlist);
+    childCleaner(fontxromlist);
+
+    for (let i = 0; i < fontList.latin.length; i++) {
+        latinromlist.appendChild(getFontOption(fontList.latin[i], i));
+    }
+
+    for (let i = 0; i < fontList.dkb844.length; i++) {
+        dkbromlist.appendChild(getFontOption(fontList.dkb844[i], i));
+    }
+
+    for (let i = 0; i < fontList.fontx.length; i++) {
+        fontxromlist.appendChild(getFontOption(fontList.fontx[i], i));
+    }
+
+    updateFonts();
+}
+
+function updateFonts() {
+    const latinromidx = document.getElementById('latinrom').value;
+    const dkbromidx = document.getElementById('dkb844rom').value;
+    const fontxromidx = document.getElementById('fontxrom').value;
+
+    renderFonts(latinromidx, dkbromidx, fontxromidx);
+    drawText();
+}
+
+function renderFonts(latinidx, dkbidx, fontxidx) {
     const fonts = fm.getFontList();
     bms = new EntryPoint.BitmapStorage();
 
-    const latin = fonts.latin[0].renderer;
-    const dkb = fonts.dkb844[0].renderer;
-    const fontx = fonts.fontx[0].renderer;
-    console.log(fontx);
+    const latin = fonts.latin[latinidx].renderer;
+    const dkb = fonts.dkb844[dkbidx].renderer;
+    const fontx = fonts.fontx[fontxidx].renderer;
 
     renderAndAddGlyph(bms, latin, 0x0000, 0x007F);
 
@@ -44,7 +87,7 @@ function renderFonts() {
     renderAndAddGlyph(bms, fontx, 0x3400, 0x4DBF);
 }
 
-function draw() {
+function drawText() {
     const canvas = document.getElementById('examplerender');
     const ctx = canvas.getContext('2d');
 
@@ -85,4 +128,9 @@ function initCanvas() {
         data[i + 3] = 255; // alpha
     }
     ctx.putImageData(imageData, 0, 0);
+}
+
+async function init() {
+    initCanvas();
+    await loadFonts();
 }

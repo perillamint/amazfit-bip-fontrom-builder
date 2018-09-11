@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
        <link rel="stylesheet" type="text/css" href="css/index.css">
     </head>
-    <body>
+    <body onload="init()">
         <form class="pure-form">
             <table>
                 <thead>
@@ -49,21 +49,21 @@
                 <tbody>
                     <tr>
                         <td>Latin ROM</td>
-                        <td><select id="latinrom"></select></td>
+                        <td><select id="latinrom" onchange="updateFonts()"></select></td>
                     </tr>
                     <tr>
                         <td>DKB844 ROM</td>
-                        <td><select id="dkb844rom"></select></td>
+                        <td><select id="dkb844rom" onchange="updateFonts()"></select></td>
                     </tr>
                     <tr>
                         <td>FontX ROM</td>
-                        <td><select id="fontxrom"></select></td>
+                        <td><select id="fontxrom" onchange="updateFonts()"></select></td>
                     </tr>
                 </tbody>
             </table>
             <input type="button" id="rombuild" value="Build!" onclick="buildrom()"><br>
         </form>
-        <textarea id="exampletext" cols="80" rows="25" class="exampletext">
+        <textarea id="exampletext" cols="80" rows="25" class="exampletext" oninput="drawText()">
 The quick brown fox jumps over the lazy dog.
 
 키스의 고유 조건은 입술끼리 만나야 하고 특별한 조건은 필요치 않다.
