@@ -21,7 +21,8 @@ you are browsing in a clone or a fork.
 
 ## License
 
-Distributed under GPL v3 or later at your choice. See [LICENSE](LICENSE).
+amazfit-bip-fontrom-builder is distributed under GPL v3 or later at your choice.
+See [LICENSE](LICENSE).
 
 ```
 Copyright (C) 2018 perillamint
