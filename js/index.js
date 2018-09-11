@@ -66,7 +66,7 @@ function updateFonts() {
 
 function renderFonts(latinidx, dkbidx, fontxidx) {
     const fonts = fm.getFontList();
-    bms = new EntryPoint.BitmapStorage();
+    bms = EntryPoint.BitmapStorage.fromBIPFont(fonts.vendor[0].binary);
 
     const latin = fonts.latin[latinidx].renderer;
     const dkb = fonts.dkb844[dkbidx].renderer;

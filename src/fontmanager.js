@@ -36,6 +36,17 @@ class FontManager {
     }
 
     async downloadFontAssets() {
+        const vendorfntmeta = (await axios.get('/asset/vendor/fonts.json')).data;
+        const vendorfonts = Object.keys(vendorfntmeta);
+        for (const i of vendorfonts) {
+            const fontbin = (await axios.get(`/asset/vendor/${i}`, {responseType: 'arraybuffer'})).data;
+            this._fonts.vendor.push({
+                binary: Buffer.from(fontbin),
+                filename: i,
+                name: vendorfntmeta[i].name,
+            });
+        }
+
         const latinfntmeta = (await axios.get('/asset/latin/fonts.json')).data;
         const latinfonts = Object.keys(latinfntmeta);
 
