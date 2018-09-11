@@ -8,11 +8,11 @@ const FontXFontRenderer = require('./src/FontXFontRenderer.js');
 const BitmapFontStorage = require('./src/BitmapFontStorage.js');
 const FontVisualizer = require('./src/FontVisualizer.js');
 
-function renderAndAddGlyph(bms, renderer, start, end) {
+function renderAndAddGlyph(bfs, renderer, start, end) {
     for(let i = start; i <= end; i++) {
         try {
             const bin = renderer.renderChar(i);
-            bms.addGlyph(i, bin, 4, renderer.getDimension().width);
+            bfs.addGlyph(i, bin, 4, renderer.getDimension().width);
         } catch (e) {}
     }
 }
@@ -41,22 +41,22 @@ async function main() {
     const fontximg = fontx.renderChar('い'.codePointAt(0));
     FontVisualizer.drawToConsole(fontximg);
 
-    const bms = BitmapFontStorage.fromBipFont(ftfile);
+    const bfs = BipFont.unpackFile(ftfile);
 
-    renderAndAddGlyph(bms, latin, 0x0000, 0x007F);
+    renderAndAddGlyph(bfs, latin, 0x0000, 0x007F);
 
-    renderAndAddGlyph(bms, dkb, 0x1100, 0x1112);
-    renderAndAddGlyph(bms, dkb, 0x11A8, 0x11C2);
-    renderAndAddGlyph(bms, dkb, 0x3131, 0x314E);
-    renderAndAddGlyph(bms, dkb, 0x314F, 0x3163);
-    renderAndAddGlyph(bms, dkb, 0xAC00, 0xD7A3);
+    renderAndAddGlyph(bfs, dkb, 0x1100, 0x1112);
+    renderAndAddGlyph(bfs, dkb, 0x11A8, 0x11C2);
+    renderAndAddGlyph(bfs, dkb, 0x3131, 0x314E);
+    renderAndAddGlyph(bfs, dkb, 0x314F, 0x3163);
+    renderAndAddGlyph(bfs, dkb, 0xAC00, 0xD7A3);
 
-    renderAndAddGlyph(bms, fontx, 0x3040, 0x309F);
-    renderAndAddGlyph(bms, fontx, 0x30A0, 0x30FF);
-    renderAndAddGlyph(bms, fontx, 0x4E00, 0x9FFF);
-    renderAndAddGlyph(bms, fontx, 0x3400, 0x4DBF);
+    renderAndAddGlyph(bfs, fontx, 0x3040, 0x309F);
+    renderAndAddGlyph(bfs, fontx, 0x30A0, 0x30FF);
+    renderAndAddGlyph(bfs, fontx, 0x4E00, 0x9FFF);
+    renderAndAddGlyph(bfs, fontx, 0x3400, 0x4DBF);
 
-    const bin = bms.buildBipFont();
+    const bin = BipFont.packFile(bfs);
     fs.writeFileSync('./built.ft', bin);
 }
 

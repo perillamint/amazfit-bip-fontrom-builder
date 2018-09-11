@@ -1,13 +1,13 @@
 'use strict';
 
 let fm = null;
-let bms = null;
+let bfs = null;
 
-function renderAndAddGlyph(bms, renderer, start, end) {
+function renderAndAddGlyph(bfs, renderer, start, end) {
     for(let i = start; i <= end; i++) {
         try {
             const bin = renderer.renderChar(i);
-            bms.addGlyph(i, bin, 4, renderer.getDimension().width);
+            bfs.addGlyph(i, bin, 4, renderer.getDimension().width);
         } catch (e) {}
     }
 }
@@ -74,25 +74,25 @@ function updateFonts() {
 
 function renderFonts(latinidx, dkbidx, fontxidx) {
     const fonts = fm.getFontList();
-    bms = EntryPoint.BitmapFontStorage.fromBipFont(fonts.vendor[0].binary);
+    bfs = EntryPoint.BipFont.unpackFile(fonts.vendor[0].binary);
 
     const latin = fonts.latin[latinidx].renderer;
     const dkb = fonts.dkb844[dkbidx].renderer;
     const fontx = fonts.fontx[fontxidx].renderer;
 
-    renderAndAddGlyph(bms, latin, 0x0000, 0x007F);
+    renderAndAddGlyph(bfs, latin, 0x0000, 0x007F);
 
-    renderAndAddGlyph(bms, dkb, 0x1100, 0x1112);
-    renderAndAddGlyph(bms, dkb, 0x11A8, 0x11C2);
-    renderAndAddGlyph(bms, dkb, 0x3131, 0x314E);
-    renderAndAddGlyph(bms, dkb, 0x314F, 0x3163);
-    renderAndAddGlyph(bms, dkb, 0xAC00, 0xD7A3);
+    renderAndAddGlyph(bfs, dkb, 0x1100, 0x1112);
+    renderAndAddGlyph(bfs, dkb, 0x11A8, 0x11C2);
+    renderAndAddGlyph(bfs, dkb, 0x3131, 0x314E);
+    renderAndAddGlyph(bfs, dkb, 0x314F, 0x3163);
+    renderAndAddGlyph(bfs, dkb, 0xAC00, 0xD7A3);
 
-    renderAndAddGlyph(bms, fontx, 0x3000, 0x303F);
-    renderAndAddGlyph(bms, fontx, 0x3040, 0x309F);
-    renderAndAddGlyph(bms, fontx, 0x30A0, 0x30FF);
-    renderAndAddGlyph(bms, fontx, 0x4E00, 0x9FFF);
-    renderAndAddGlyph(bms, fontx, 0x3400, 0x4DBF);
+    renderAndAddGlyph(bfs, fontx, 0x3000, 0x303F);
+    renderAndAddGlyph(bfs, fontx, 0x3040, 0x309F);
+    renderAndAddGlyph(bfs, fontx, 0x30A0, 0x30FF);
+    renderAndAddGlyph(bfs, fontx, 0x4E00, 0x9FFF);
+    renderAndAddGlyph(bfs, fontx, 0x3400, 0x4DBF);
 }
 
 function drawText() {
@@ -105,17 +105,17 @@ function drawText() {
     initCanvas();
     let xpos = 0;
     let ypos = 0;
-    for(let i = 0; i < text.length; i++) {
+    for (let i = 0; i < text.length; i++) {
         const code = text.charCodeAt(i);
         if (code === 10) {
             ypos += 16;
             xpos = 0;
         } else {
-            const glyph = bms.getGlyph(code);
+            const glyph = bfs.getGlyphAt(code);
 
-            if(glyph != null) {
-                EntryPoint.FontVisualizer.drawToCanvas(glyph.data, ctx, xpos, ypos);
-                xpos += glyph.width;
+            if (glyph != null) {
+                EntryPoint.FontVisualizer.drawToCanvas(glyph.getData(), ctx, xpos, ypos);
+                xpos += glyph.getWidth();
             } else {
                 // TODO: Tofu here
                 xpos += 16;
@@ -146,7 +146,7 @@ async function init() {
 }
 
 async function buildROM() {
-    const rom = bms.buildBipFont();
+    const rom = BipFont.packFile(bfs);
     const link = document.createElement( 'a' );
     link.style.display = 'none';
     document.body.appendChild( link );

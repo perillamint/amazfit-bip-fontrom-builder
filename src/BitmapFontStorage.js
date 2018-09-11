@@ -1,38 +1,39 @@
 'use strict';
 
+const BitmapFontGlyph = require('./BitmapFontGlyph.js')
 const BipFont = require('./BipFont.js');
+const assert = require('assert');
 
 class BitmapFontStorage {
     constructor() {
-        this._bitmaps = {};
-    }
-
-    static fromBipFont(buffer) {
-        const fontmap = BipFont.unpackFile(buffer);
-        const bfs = new BitmapFontStorage();
-        bfs.setBitmaps(fontmap);
-
-        return bfs;
+        this._codeToGlyphMap = {};
     }
 
     setBitmaps(bitmapobj) {
-        this._bitmaps = bitmapobj;
+        this._codeToGlyphMap = bitmapobj;
     }
 
-    addGlyph(code, bitmap, margin_top, width) {
-        this._bitmaps[code] = {
-            data: bitmap,
-            margin_top: margin_top,
-            width: width,
-        };
+    addGlyph(code, bitmapData, marginTop, width) {
+        assert.equal(code.constructor.name, 'Number');
+        assert.equal(bitmapData.constructor.name, 'Buffer');
+        assert.equal(marginTop.constructor.name, 'Number');
+        assert.equal(width.constructor.name, 'Number');
+
+        this._codeToGlyphMap[code] = new BitmapFontGlyph(bitmapData, marginTop, width);
     }
 
-    getGlyph(code) {
-        return this._bitmaps[code];
+    getGlyphAt(code) {
+        assert(code.constructor.name, 'Number');
+
+        return this._codeToGlyphMap[code];
+    }
+
+    getAllGlyphs() {
+        return this._codeToGlyphMap;
     }
 
     buildBipFont() {
-        return BipFont.packFile(this._bitmaps);
+        return BipFont.packFile(this);
     }
 }
 
