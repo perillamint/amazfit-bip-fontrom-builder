@@ -33,7 +33,7 @@ class BIPFont {
                 fonts[i] = {
                     data: font,
                     margin_top: margin_top,
-                    width: width,
+                    width: width + 1,
                 };
             }
         }
@@ -52,11 +52,12 @@ class BIPFont {
         });
 
         let header = Buffer.from('4E455A4B08FFFFFFFFFF01000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000', 'hex');
-        let body = Buffer.from([]);
+        const body = Buffer.alloc(codepoints.length * 33);
 
         let blkstart = codepoints[0];
         let blkcnt = 0;
         let seqcnt = 0;
+        let offset = 0;
         for (let i = 0; i < codepoints.length; i++) {
             const font = fontmap[codepoints[i]];
 
@@ -64,9 +65,12 @@ class BIPFont {
                 throw new Error('Invalid font binary');
             }
 
-            const padding = ((font.width << 4) + (font.margin_top & 0x0F)) & 0xFF;
-            const fontimg = Buffer.concat([font.data, Buffer.from([padding])]);
-            body = Buffer.concat([body, fontimg]);
+            const padding = (((font.width - 1) << 4) + (font.margin_top & 0x0F)) & 0xFF;
+            for (let j = 0; j < 32; j++) {
+                body[offset * 33 + j] = font.data[j];
+            }
+            body[offset * 33 + 32] = padding;
+            offset ++;
 
             if (codepoints[i + 1] == null || codepoints[i] + 1 !== codepoints[i + 1]) {
                 // End of continuous block
