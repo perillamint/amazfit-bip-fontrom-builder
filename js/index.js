@@ -93,6 +93,8 @@ function drawText() {
 
     const text = document.getElementById('exampletext').value;
 
+    // Erase canvas before draw anything
+    initCanvas();
     let xpos = 0;
     let ypos = 0;
     for(let i = 0; i < text.length; i++) {
