@@ -8,7 +8,7 @@ class BitmapStorage {
     }
 
     static fromBIPFont(buffer) {
-        fontmap = bipFont.unpackFile(buffer);
+        const fontmap = bipFont.unpackFile(buffer);
         const bms = new BitmapStorage();
         bms.setBitmaps(fontmap);
 
@@ -31,3 +31,5 @@ class BitmapStorage {
         return bipFont.packFile(this._bitmaps);
     }
 }
+
+module.exports = BitmapStorage;

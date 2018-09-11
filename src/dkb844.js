@@ -12,6 +12,8 @@ const jungLookup1 = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1]
 const jungLookup2 = [0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3];
 const jongLookup  = [0, 0, 2, 0, 2, 1, 2, 1, 2, 3, 0, 2, 1, 3, 3, 1, 2, 1, 3, 3, 1, 1];
 
+const compatChoIdxLookup = [1, 2, 0, 3, 0, 0, 4, 5, 6, 0, 0, 0, 0 ,0, 0, 0, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+
 class DKB844 extends FontRenderer {
     constructor(font, width, height) {
         super(width, height);
@@ -73,7 +75,6 @@ class DKB844 extends FontRenderer {
         } else if (code >= 0x11A8 && code <= 0x11C2) {
             jongIdx = code - 0x11A8 + 1;
         } else if (code >= 0x3131 && code <= 0x314E) {
-            compatChoIdxLookup = [1, 2, 0, 3, 0, 0, 4, 5, 6, 0, 0, 0, 0 ,0, 0, 0, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
             choIdx = compatChoIdxLookup[code - 0x3131];
         } else if (code >= 0x314F && code <= 0x3163) {
             jungIdx = code - 0x314F + 1;
