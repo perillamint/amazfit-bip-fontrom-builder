@@ -43,5 +43,10 @@
         "name": "VGA ROM BIOS",
         "width": 8,
         "height": 16
+    },
+    "Bm437_IBM_PS2thin4.F16": {
+        "name": "IBM PS/2thin4",
+        "width": 8,
+        "height": 16
     }
 }
