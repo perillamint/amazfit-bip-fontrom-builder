@@ -4,6 +4,10 @@ HTML5 FontROM builder for Xiaomi Amazfit Bip.
 
 Runs on premise with Node.JS, or served as serverless web application.
 
+This repository is <https://github.com/perillamint/amazfit-bip-fontrom-builder>,
+or one of its clones or forks. If you are not in the original repository,
+you are browsing in a clone or a fork.
+
 ## Dependencies
 
 * webpack
