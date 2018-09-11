@@ -116,6 +116,4 @@ class DKB844 extends FontRenderer {
     }
 }
 
-try {
-    module.exports = DKB844;
-} catch (_e) {}
+module.exports = DKB844;

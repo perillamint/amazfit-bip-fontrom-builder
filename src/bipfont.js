@@ -1,32 +1,4 @@
-let exportFlag = false;
-try {
-    if (module !== undefined) {
-        exportFlag = true;
-    }
-} catch (_e) {
-    //
-}
-
 'use strict';
-
-function printFont(bin) {
-    let line = '';
-    for (let i = 0; i < 16; i++) {
-        for (let j = 0; j < 16; j++) {
-            const pixelpt = i * 16 + j;
-            const buf = bin[Math.floor(pixelpt / 8)];
-            const bit = buf << (pixelpt % 8);
-            if (bit & 0x80) {
-                line = line + '■';
-            } else {
-                line = line + '□';
-            }
-        }
-        line += '\n';
-    }
-
-    console.log(line);
-}
 
 class BIPFont {
     static unpackFile(bin) {
@@ -115,6 +87,5 @@ class BIPFont {
     }
 }
 
-if (exportFlag) {
-    module.exports = BIPFont;
-}
+module.exports = BIPFont;
+
