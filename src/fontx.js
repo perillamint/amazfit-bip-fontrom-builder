@@ -14,6 +14,7 @@ class FontXRenderer extends FontRenderer {
         super(width, height);
 
         this._fontbin = font;
+        
 
         const header = {};
         header.fontname = font.slice(0x06, 0x0E).toString('UTF-8');

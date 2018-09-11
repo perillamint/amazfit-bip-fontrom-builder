@@ -6,25 +6,7 @@ const DKB844Renderer = require('./src/dkb844.js');
 const LatinRenderer = require('./src/latin.js');
 const FontXRenderer = require('./src/fontx.js');
 const BitmapStorage = require('./src/bitmapstorage.js');
-
-function printFont(bin) {
-    let line = '';
-    for (let i = 0; i < 16; i++) {
-        for (let j = 0; j < 16; j++) {
-            const pixelpt = i * 16 + j;
-            const buf = bin[Math.floor(pixelpt / 8)];
-            const bit = buf << (pixelpt % 8);
-            if (bit & 0x80) {
-                line = line + '■';
-            } else {
-                line = line + '□';
-            }
-        }
-        line += '\n';
-    }
-
-    console.log(line);
-}
+const fontVisualizer = require('./src/fontvisualizer.js');
 
 function renderAndAddGlyph(bms, renderer, start, end) {
     for(let i = start; i <= end; i++) {
@@ -37,7 +19,7 @@ function renderAndAddGlyph(bms, renderer, start, end) {
 
 async function main() {
     //const ftfile = fs.readFileSync('./test-latinonly.ft');
-    const ftfile = fs.readFileSync('./Mili_chaohu.ft');
+    const ftfile = fs.readFileSync('./asset/vendor/Mili_chaohu.ft');
     const dkbfile = fs.readFileSync('./asset/dkb844/H04.FNT');
     const latinFile = fs.readFileSync('./asset/latin/VGA-ROM.F16');
     const fontxFile = fs.readFileSync('./asset/fontx/04GZN16X.FNT');
@@ -49,15 +31,15 @@ async function main() {
 
     const dkb = new DKB844Renderer(dkbfile, 16, 16);
     const dkbimg = dkb.renderChar('삠'.codePointAt(0));
-    printFont(dkbimg);
+    fontVisualizer.drawToConsole(dkbimg);
 
     const latin = new LatinRenderer(latinFile, 8, 16);
     const latinimg = latin.renderChar('I'.codePointAt(0));
-    printFont(latinimg);
+    fontVisualizer.drawToConsole(latinimg);
 
     const fontx = new FontXRenderer(fontxFile);
     const fontximg = fontx.renderChar('い'.codePointAt(0));
-    printFont(fontximg);
+    fontVisualizer.drawToConsole(fontximg);
 
     const bms = BitmapStorage.fromBIPFont(ftfile);
 
