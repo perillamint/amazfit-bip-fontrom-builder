@@ -4,7 +4,7 @@ const assert = require('assert');
 
 class FontVisualizer {
     static drawToConsole(glyphData, _ctx, _x, _y) {
-        assert.equal(glyphData.constructor.name, 'Buffer')
+        assert.strictEqual(glyphData.constructor.name, 'Buffer')
 
         let line = '';
         for (let i = 0; i < 16; i++) {
@@ -25,12 +25,12 @@ class FontVisualizer {
     }
 
     static drawToCanvas(glyphData, ctx, x, y) {
-        assert.equal(glyphData.constructor.name, 'Buffer')
-        assert.equal(ctx.constructor.name, 'CanvasRenderingContext2D')
-        assert.equal(x.constructor.name, 'Number')
-        assert.equal(x | 0, x)
-        assert.equal(y.constructor.name, 'Number')
-        assert.equal(y | 0, y)
+        assert.strictEqual(glyphData.constructor.name, 'Buffer')
+        assert.strictEqual(ctx.constructor.name, 'CanvasRenderingContext2D')
+        assert.strictEqual(x.constructor.name, 'Number')
+        assert.strictEqual(x | 0, x)
+        assert.strictEqual(y.constructor.name, 'Number')
+        assert.strictEqual(y | 0, y)
 
         const imageData = ctx.createImageData(16, 16);
         const data = imageData.data;

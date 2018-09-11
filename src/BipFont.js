@@ -5,7 +5,7 @@ const assert = require('assert');
 
 class BipFont {
     static unpackFile(bin) {
-        assert.equal(bin.constructor.name, 'Buffer');
+        assert.strictEqual(bin.constructor.name, 'Buffer');
 
         const magic = bin.readUInt32BE(0);
         if (magic !== 0x4E455A4b) {
@@ -39,12 +39,12 @@ class BipFont {
             }
         }
 
-        assert.equal(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
+        assert.strictEqual(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
         return bitmapFontStorage;
     }
 
     static packFile(bitmapFontStorage) {
-        assert.equal(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
+        assert.strictEqual(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
 
         const glyphs = bitmapFontStorage.getAllGlyphs()
         const codepoints = Object.keys(glyphs).sort((a, b) => {
@@ -94,7 +94,7 @@ class BipFont {
 
         const retBuf = Buffer.concat([header, body]);
 
-        assert.equal(retBuf.constructor.name, 'Buffer');
+        assert.strictEqual(retBuf.constructor.name, 'Buffer');
         return retBuf;
     }
 }

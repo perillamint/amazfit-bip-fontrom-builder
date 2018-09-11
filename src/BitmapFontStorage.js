@@ -14,10 +14,10 @@ class BitmapFontStorage {
     }
 
     addGlyph(code, bitmapData, marginTop, width) {
-        assert.equal(code.constructor.name, 'Number');
-        assert.equal(bitmapData.constructor.name, 'Buffer');
-        assert.equal(marginTop.constructor.name, 'Number');
-        assert.equal(width.constructor.name, 'Number');
+        assert.strictEqual(code.constructor.name, 'Number');
+        assert.strictEqual(bitmapData.constructor.name, 'Buffer');
+        assert.strictEqual(marginTop.constructor.name, 'Number');
+        assert.strictEqual(width.constructor.name, 'Number');
 
         this._codeToGlyphMap[code] = new BitmapFontGlyph(bitmapData, marginTop, width);
     }

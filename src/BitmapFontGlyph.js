@@ -4,11 +4,11 @@ const assert = require('assert');
 
 class BitmapFontGlyph {
     constructor(data, marginTop, width) {
-        assert.equal(data.constructor.name, 'Buffer');
-        assert.equal(marginTop.constructor.name, 'Number');
-        assert.equal(marginTop | 0, marginTop);
-        assert.equal(width.constructor.name, 'Number');
-        assert.equal(width | 0, width);
+        assert.strictEqual(data.constructor.name, 'Buffer');
+        assert.strictEqual(marginTop.constructor.name, 'Number');
+        assert.strictEqual(marginTop | 0, marginTop);
+        assert.strictEqual(width.constructor.name, 'Number');
+        assert.strictEqual(width | 0, width);
 
         this._data = data;
         this._marginTop = marginTop;
