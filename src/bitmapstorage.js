@@ -27,6 +27,10 @@ class BitmapStorage {
         };
     }
 
+    getGlyph(code) {
+        return this._bitmaps[code];
+    }
+
     buildBipFont() {
         return bipFont.packFile(this._bitmaps);
     }
