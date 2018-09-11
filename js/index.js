@@ -32,13 +32,19 @@ async function loadFonts(evt) {
 
     const fontList = fm.getFontList();
 
+    const baseromlist = document.getElementById('baserom');
     const latinromlist = document.getElementById('latinrom');
     const dkbromlist = document.getElementById('dkb844rom');
     const fontxromlist = document.getElementById('fontxrom');
 
+    childCleaner(baseromlist);
     childCleaner(latinromlist);
     childCleaner(dkbromlist);
     childCleaner(fontxromlist);
+
+    for (let i = 0; i < fontList.vendor.length; i++) {
+        baseromlist.appendChild(getFontOption(fontList.vendor[i], i));
+    }
 
     for (let i = 0; i < fontList.latin.length; i++) {
         latinromlist.appendChild(getFontOption(fontList.latin[i], i));
