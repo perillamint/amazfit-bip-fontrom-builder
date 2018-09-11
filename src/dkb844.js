@@ -22,7 +22,7 @@ class DKB844 extends FontRenderer {
         this._jongSet = [];
 
         let off = 0;
-        for(let i = 0; i < 8; i++) {
+        for (let i = 0; i < 8; i++) {
             this._choSet[i] = [];
             for (let j = 0; j < 20; j++) {
                 this._choSet[i][j] = this._grabChar(off);
@@ -30,7 +30,7 @@ class DKB844 extends FontRenderer {
             }
         }
 
-        for(let i = 0; i < 4; i++) {
+        for (let i = 0; i < 4; i++) {
             this._jungSet[i] = [];
             for (let j = 0; j < 22; j++) {
                 this._jungSet[i][j] = this._grabChar(off);
@@ -64,7 +64,7 @@ class DKB844 extends FontRenderer {
         let jungIdx = 0;
         let jongIdx = 0;
 
-        const buf = Buffer.alloc(characterByte);
+        const buf = Buffer.alloc(32);
 
         if (code >= 0x1100 && code <= 0x1112) {
             choIdx = code - 0x1100 + 1;
