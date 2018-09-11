@@ -2,4 +2,6 @@
 HTML5 FontROM builder for Xiaomi Amazfit Bip
 
 # Dependencies
-* https://github.com/feross/buffer
+* webpack
+* iconv-lite
+* axios
