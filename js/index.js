@@ -149,4 +149,5 @@ async function buildROM() {
     link.href = URL.createObjectURL( blob );
     link.download = 'font.ft';
     link.click();
+    link.remove();
 }
