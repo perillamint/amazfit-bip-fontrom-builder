@@ -134,3 +134,19 @@ async function init() {
     initCanvas();
     await loadFonts();
 }
+
+async function buildROM() {
+    const rom = bms.buildBipFont();
+    const link = document.createElement( 'a' );
+    link.style.display = 'none';
+    document.body.appendChild( link );
+
+
+    const blob = new Blob( [ rom ], { type: 'application/octet-binary' } );	
+    const objectURL = URL.createObjectURL( blob );
+
+    link.href = objectURL;
+    link.href = URL.createObjectURL( blob );
+    link.download = 'font.ft';
+    link.click();
+}
