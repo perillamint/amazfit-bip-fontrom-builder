@@ -21,7 +21,6 @@ class FontVisualizer {
     static drawToCanvas(font, ctx, x, y) {
         const imageData = ctx.createImageData(16, 16);
         const data = imageData.data;
-        console.log(imageData);
 
         for (let i = 0; i < 16; i++) {
             for (let j = 0; j < 16; j++) {

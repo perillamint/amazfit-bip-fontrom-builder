@@ -37,6 +37,7 @@ function renderFonts() {
     renderAndAddGlyph(bms, dkb, 0x314F, 0x3163);
     renderAndAddGlyph(bms, dkb, 0xAC00, 0xD7A3);
 
+    renderAndAddGlyph(bms, fontx, 0x3000, 0x303F);
     renderAndAddGlyph(bms, fontx, 0x3040, 0x309F);
     renderAndAddGlyph(bms, fontx, 0x30A0, 0x30FF);
     renderAndAddGlyph(bms, fontx, 0x4E00, 0x9FFF);
@@ -46,9 +47,28 @@ function renderFonts() {
 function draw() {
     const canvas = document.getElementById('examplerender');
     const ctx = canvas.getContext('2d');
-    const glyph = bms.getGlyph(0x30C4);
-    EntryPoint.FontVisualizer.drawToConsole(glyph.data);
-    EntryPoint.FontVisualizer.drawToCanvas(glyph.data, ctx, 0, 0);
+
+    const text = document.getElementById('exampletext').value;
+
+    let xpos = 0;
+    let ypos = 0;
+    for(let i = 0; i < text.length; i++) {
+        const code = text.charCodeAt(i);
+        if (code === 10) {
+            ypos += 16;
+            xpos = 0;
+        } else {
+            const glyph = bms.getGlyph(code);
+
+            if(glyph != null) {
+                EntryPoint.FontVisualizer.drawToCanvas(glyph.data, ctx, xpos, ypos);
+                xpos += glyph.width;
+            } else {
+                // TODO: Tofu here
+                xpos += 16;
+            }
+        }
+    }
 }
 
 function initCanvas() {
