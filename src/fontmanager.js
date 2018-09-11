@@ -104,7 +104,7 @@ class FontManager {
     async addLatinFont(file, filename, name, width, height) {
         const bin = await this._fileToArrayBuffer(file);
         this._fonts.latin.push({
-            renderer: LatinRenderer(Buffer.from(bin), width, height),
+            renderer: new LatinRenderer(Buffer.from(bin), width, height),
             filename: filename,
             name: name,
         });

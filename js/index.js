@@ -26,12 +26,8 @@ function getFontOption(font, value) {
     return option;
 }
 
-async function loadFonts(evt) {
-    fm = new EntryPoint.FontManager();
-    await fm.downloadFontAssets();
-
+function refreshFontList() {
     const fontList = fm.getFontList();
-
     const baseromlist = document.getElementById('baserom');
     const latinromlist = document.getElementById('latinrom');
     const dkbromlist = document.getElementById('dkb844rom');
@@ -57,7 +53,13 @@ async function loadFonts(evt) {
     for (let i = 0; i < fontList.fontx.length; i++) {
         fontxromlist.appendChild(getFontOption(fontList.fontx[i], i));
     }
+}
 
+async function loadFonts(evt) {
+    fm = new EntryPoint.FontManager();
+    await fm.downloadFontAssets();
+
+    refreshFontList();
     updateFonts();
 }
 
@@ -158,4 +160,49 @@ async function buildROM() {
     link.download = 'font.ft';
     link.click();
     link.remove();
+}
+
+async function loadROM() {
+    const romtype = document.getElementById('romtype').value;
+    const romfile = document.getElementById('rom').files[0];
+    const romname = document.getElementById('romname').value;
+    const romwidth = document.getElementById('romwidth').value;
+    const romheight = document.getElementById('romheight').value;
+
+    try {
+        if (romfile == null) {
+            throw new Error('ROM file cannot be empty!');
+        }
+
+        if (romname === '') {
+            throw new Error('ROM name cannot be empty!');
+        }
+
+        if (romtype !== 'vendor' || romtype !== 'fontx') {
+            if (romwidth === '' || romheight === '') {
+                throw new Error('ROM dimension cannot be empty!');
+            }
+        }
+
+        switch(romtype) {
+            case 'vendor':
+                await fm.addVendorFont(romfile, romfile.name, romname);
+                break;
+            case 'latin':
+                await fm.addLatinFont(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
+                break;
+            case 'dkb844':
+                await fm.addDKB844Font(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
+                break;
+            case 'fontx':
+                await fm.addFontXFont(romfile, romfile.name, romname);
+                break;
+        }
+    } catch (e) {
+        alert(e.message);
+        return;
+    }
+
+    alert('ROM loaded successfully!');
+    refreshFontList();
 }

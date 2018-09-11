@@ -19,7 +19,7 @@
                         <div class="pure-control-group">
                             <label for="romtype">ROM Type</label>
                             <select id="romtype">
-                                <option value="bipbase">BIP base ROM</option>
+                                <option value="vendor">BIP base ROM</option>
                                 <option value="latin">Latin ROM</option>
                                 <option value="dkb844">Dokkaebi 844 ROM</option>
                                 <option value="fontx">FontX ROM</option>
@@ -41,7 +41,7 @@
                             <label for="romheight">Font Height</label>
                             <td><input type="number" id="romheight"></td>
                         </div>
-                        <button class="pure-button" id="romload" onclick="loadrom()">Load!</button>
+                        <button type="button" class="pure-button pure-button-primary" id="romload" onclick="loadROM()">Load!</button>
                     </fieldset>
                     <br>
                 </form>
@@ -67,7 +67,7 @@
                             <select id="fontxrom" onchange="updateFonts()"></select>
                         </div>
                     </fieldset>
-                    <button class="pure-button" id="rombuild" onclick="buildROM()">Build!</button>
+                    <button type="button" class="pure-button pure-button-primary" id="rombuild" onclick="buildROM()">Build!</button>
                 </form>
             </div>
         </div>
