@@ -1,15 +1,68 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
 <html>
+    <meta charset="utf-8">
     <head>
         <title>Amazfit BIP FontROM builder</title>
         <script src="dist/bundle.js"></script>
         <script src="js/index.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+       <link rel="stylesheet" type="text/css" href="css/index.css">
     </head>
     <body>
-        <input type="file" id="baserom" onchange="loadbiprom()">
-        <br>
+        <form class="pure-form">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ROM Type</th>
+                        <th>File</th>
+                        <th>Name</th>
+                        <th>Width</th>
+                        <th>Height</th>
+                        <th>Apply</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select id="romtype">
+                                <option value="bipbase">BIP base ROM</option>
+                                <option value="latin">Latin ROM</option>
+                                <option value="dkb844">Dokkaebi 844 ROM</option>
+                                <option value="fontx">FontX ROM</option>
+                            </select>
+                        </td>
+                        <td><input type="file" id="rom"></td>
+                        <td><input type="text" id="romname"></td>
+                        <td><input type="number" id="romwidth"></td>
+                        <td><input type="number" id="romheight"></td>
+                        <td><button class="pure-button" id="romload" onclick="loadrom()">Load!</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Choose ROM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Latin ROM</td>
+                        <td><select id="latinrom"></select></td>
+                    </tr>
+                    <tr>
+                        <td>DKB844 ROM</td>
+                        <td><select id="dkb844rom"></select></td>
+                    </tr>
+                    <tr>
+                        <td>FontX ROM</td>
+                        <td><select id="fontxrom"></select></td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="button" id="rombuild" value="Build!" onclick="buildrom()"><br>
+        </form>
         <textarea id="exampletext" cols="80" rows="25" class="exampletext">
 The quick brown fox jumps over the lazy dog.
 
