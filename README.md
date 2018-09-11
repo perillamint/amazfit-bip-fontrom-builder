@@ -39,3 +39,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses/.
 ```
+
+Note that the individual font assets are originally not part of this project,
+so they are distributed under license terms of each font asset.
+
+* Kimjoongtae fonts - Public domain
+* Bm437_IBM_PS2thin4.F16 - CC-BY-SA 4.0 https://int10h.org/oldschool-pc-fonts/
+* 04GZN16X.FNT - GNU GPL v2 http://dos.minashiro.net/freedosvd.html
