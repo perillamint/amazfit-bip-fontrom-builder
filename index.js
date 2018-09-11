@@ -43,7 +43,9 @@ async function main() {
     const fontxFile = fs.readFileSync('./asset/fontx/04GZN16X.FNT');
 
     //const fontmap = BIPFont.unpackFile(ftfile);
-    //BIPFont.packFile(fontmap);
+    //const fontbin = BIPFont.packFile(fontmap);
+    //fs.writeFileSync('./test.ft', fontbin);
+    //return;
 
     const dkb = new DKB844Renderer(dkbfile, 16, 16);
     const dkbimg = dkb.renderChar('삠'.codePointAt(0));
