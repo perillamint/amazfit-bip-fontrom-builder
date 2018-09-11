@@ -1,18 +1,18 @@
 'use strict';
 
-const bipFont = require('./bipfont.js');
+const BipFont = require('./BipFont.js');
 
-class BitmapStorage {
+class BitmapFontStorage {
     constructor() {
         this._bitmaps = {};
     }
 
-    static fromBIPFont(buffer) {
-        const fontmap = bipFont.unpackFile(buffer);
-        const bms = new BitmapStorage();
-        bms.setBitmaps(fontmap);
+    static fromBipFont(buffer) {
+        const fontmap = BipFont.unpackFile(buffer);
+        const bfs = new BitmapFontStorage();
+        bfs.setBitmaps(fontmap);
 
-        return bms;
+        return bfs;
     }
 
     setBitmaps(bitmapobj) {
@@ -32,8 +32,8 @@ class BitmapStorage {
     }
 
     buildBipFont() {
-        return bipFont.packFile(this._bitmaps);
+        return BipFont.packFile(this._bitmaps);
     }
 }
 
-module.exports = BitmapStorage;
+module.exports = BitmapFontStorage;

@@ -1,9 +1,9 @@
 'use strict';
 
 const axios = require('axios');
-const DKB844Renderer = require('./dkb844.js');
-const LatinRenderer = require('./latin.js');
-const FontXRenderer = require('./fontx.js');
+const Dkb844FontRenderer = require('./Dkb844FontRenderer.js');
+const LatinFontRenderer = require('./LatinFontRenderer.js');
+const FontXFontRenderer = require('./FontXFontRenderer.js');
 
 class FontManager {
     constructor() {
@@ -55,7 +55,7 @@ class FontManager {
             const width = latinfntmeta[i].width;
             const height = latinfntmeta[i].height;
             this._fonts.latin.push({
-                renderer: new LatinRenderer(Buffer.from(fontbin), width, height),
+                renderer: new LatinFontRenderer(Buffer.from(fontbin), width, height),
                 filename: i,
                 name: latinfntmeta[i].name,
             });
@@ -69,7 +69,7 @@ class FontManager {
             const width = dkb844fntmeta[i].width;
             const height = dkb844fntmeta[i].height;
             this._fonts.dkb844.push({
-                renderer: new DKB844Renderer(Buffer.from(fontbin), width, height),
+                renderer: new Dkb844FontRenderer(Buffer.from(fontbin), width, height),
                 filename: i,
                 name: dkb844fntmeta[i].name,
             });
@@ -81,7 +81,7 @@ class FontManager {
         for (const i of fontxfonts) {
             const fontbin = (await axios.get(`./asset/fontx/${i}`, {responseType: 'arraybuffer'})).data;
             this._fonts.fontx.push({
-                renderer: new FontXRenderer(Buffer.from(fontbin)),
+                renderer: new FontXFontRenderer(Buffer.from(fontbin)),
                 filename: i,
                 name: fontxfntmeta[i].name,
             });
@@ -104,7 +104,7 @@ class FontManager {
     async addLatinFont(file, filename, name, width, height) {
         const bin = await this._fileToArrayBuffer(file);
         this._fonts.latin.push({
-            renderer: new LatinRenderer(Buffer.from(bin), width, height),
+            renderer: new LatinFontRenderer(Buffer.from(bin), width, height),
             filename: filename,
             name: name,
         });
@@ -113,7 +113,7 @@ class FontManager {
     async addDKB844Font(file, filename, name, width, height) {
         const bin = await this._fileToArrayBuffer(file);
         this._fonts.dkb844.push({
-            renderer: new DKB844Renderer(Buffer.from(bin), width, height),
+            renderer: new Dkb844FontRenderer(Buffer.from(bin), width, height),
             filename: filename,
             name: name,
         });
@@ -122,7 +122,7 @@ class FontManager {
     async addFontXFont(file, filename, name) {
         const bin = await this._fileToArrayBuffer(file);
         this._fonts.dkb844.push({
-            renderer: new FontXRenderer(Buffer.from(bin)),
+            renderer: new FontXFontRenderer(Buffer.from(bin)),
             filename: filename,
             name: name,
         });

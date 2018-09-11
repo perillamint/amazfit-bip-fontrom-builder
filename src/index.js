@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = {
-    BIPFont: require('./bipfont.js'),
-    DKB844: require('./dkb844.js'),
-    Latin: require('./latin.js'),
-    FontX: require('./fontx.js'),
-    BitmapStorage: require('./bitmapstorage.js'),
-    FontManager: require('./fontmanager.js'),
-    FontVisualizer: require('./fontvisualizer.js'),
+    BipFont: require('./BipFont.js'),
+    Dkb844FontRenderer: require('./Dkb844FontRenderer.js'),
+    LatinFontRenderer: require('./LatinFontRenderer.js'),
+    FontXFontRenderer: require('./FontXFontRenderer.js'),
+    BitmapFontStorage: require('./BitmapFontStorage.js'),
+    FontManager: require('./FontManager.js'),
+    FontVisualizer: require('./FontVisualizer.js'),
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const FontRenderer = require('./fontrenderer.js');
+const FontRenderer = require('./FontRenderer.js');
 
 // choLookup1, 2: Key is jungIdx
 // jungLookup   : Key is choIdx
@@ -14,7 +14,7 @@ const jongLookup  = [0, 0, 2, 0, 2, 1, 2, 1, 2, 3, 0, 2, 1, 3, 3, 1, 2, 1, 3, 3,
 
 const compatChoIdxLookup = [1, 2, 0, 3, 0, 0, 4, 5, 6, 0, 0, 0, 0 ,0, 0, 0, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
-class DKB844 extends FontRenderer {
+class Dkb844FontRenderer extends FontRenderer {
     constructor(font, width, height) {
         super(width, height);
 
@@ -117,4 +117,4 @@ class DKB844 extends FontRenderer {
     }
 }
 
-module.exports = DKB844;
+module.exports = Dkb844FontRenderer;

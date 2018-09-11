@@ -1,12 +1,12 @@
 'use strict';
 
 const fs = require('fs');
-const BIPFont = require('./src/bipfont.js');
-const DKB844Renderer = require('./src/dkb844.js');
-const LatinRenderer = require('./src/latin.js');
-const FontXRenderer = require('./src/fontx.js');
-const BitmapStorage = require('./src/bitmapstorage.js');
-const fontVisualizer = require('./src/fontvisualizer.js');
+const BipFont = require('./src/BipFont.js');
+const Dkb844FontRenderer = require('./src/Dkb844FontRenderer.js');
+const LatinFontRenderer = require('./src/LatinFontRenderer.js');
+const FontXFontRenderer = require('./src/FontXFontRenderer.js');
+const BitmapFontStorage = require('./src/BitmapFontStorage.js');
+const FontVisualizer = require('./src/FontVisualizer.js');
 
 function renderAndAddGlyph(bms, renderer, start, end) {
     for(let i = start; i <= end; i++) {
@@ -24,24 +24,24 @@ async function main() {
     const latinFile = fs.readFileSync('./asset/latin/VGA-ROM.F16');
     const fontxFile = fs.readFileSync('./asset/fontx/04GZN16X.FNT');
 
-    //const fontmap = BIPFont.unpackFile(ftfile);
-    //const fontbin = BIPFont.packFile(fontmap);
+    //const fontmap = BipFont.unpackFile(ftfile);
+    //const fontbin = BipFont.packFile(fontmap);
     //fs.writeFileSync('./test.ft', fontbin);
     //return;
 
-    const dkb = new DKB844Renderer(dkbfile, 16, 16);
+    const dkb = new Dkb844FontRenderer(dkbfile, 16, 16);
     const dkbimg = dkb.renderChar('삠'.codePointAt(0));
-    fontVisualizer.drawToConsole(dkbimg);
+    FontVisualizer.drawToConsole(dkbimg);
 
-    const latin = new LatinRenderer(latinFile, 8, 16);
+    const latin = new LatinFontRenderer(latinFile, 8, 16);
     const latinimg = latin.renderChar('I'.codePointAt(0));
-    fontVisualizer.drawToConsole(latinimg);
+    FontVisualizer.drawToConsole(latinimg);
 
-    const fontx = new FontXRenderer(fontxFile);
+    const fontx = new FontXFontRenderer(fontxFile);
     const fontximg = fontx.renderChar('い'.codePointAt(0));
-    fontVisualizer.drawToConsole(fontximg);
+    FontVisualizer.drawToConsole(fontximg);
 
-    const bms = BitmapStorage.fromBIPFont(ftfile);
+    const bms = BitmapFontStorage.fromBipFont(ftfile);
 
     renderAndAddGlyph(bms, latin, 0x0000, 0x007F);
 

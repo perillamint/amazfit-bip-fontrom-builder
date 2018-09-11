@@ -1,6 +1,6 @@
 'use strict';
 
-class BIPFont {
+class BipFont {
     static unpackFile(bin) {
         const magic = bin.readUInt32BE(0);
         if (magic !== 0x4E455A4b) {
@@ -91,5 +91,4 @@ class BIPFont {
     }
 }
 
-module.exports = BIPFont;
-
+module.exports = BipFont;
