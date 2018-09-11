@@ -3,5 +3,6 @@
 module.exports = {
     BIPFont: require('./bipfont.js'),
     DKB844: require('./dkb844.js'),
-    axios: require('axios'),
+    Latin: require('./latin.js'),
+    FontX: require('./fontx.js'),
 };
