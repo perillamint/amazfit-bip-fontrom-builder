@@ -19,7 +19,7 @@
         // "ecmaVersion": 5,                       // set to 3, 5 (default), 6, 7, or 8 to specify the version of ECMAScript syntax you want to use.
         //                                         // You can also set to 2015 (same as 6), 2016 (same as 7), or 2017 (same as 8) to use the year-based naming.
 
-        // "sourceType": "script",                 // set to "script" (default) or "module" if your code is in ECMAScript modules.
+        //"sourceType": "script",                 // set to "script" (default) or "module" if your code is in ECMAScript modules.
 
         "ecmaVersion": 9,
         "sourceType": "module",
@@ -159,7 +159,7 @@
         "dot-notation": 2,                      // enforce dot notation whenever possible
         "eqeqeq": [2, "always", {"null": "ignore"}], // require the use of === and !==
         "guard-for-in": 2,                      // require for-in loops to include an if statement
-        "no-alert": 2,                          // disallow the use of alert, confirm, and prompt
+        "no-alert": 0,                          // disallow the use of alert, confirm, and prompt
         "no-caller": 2,                         // disallow the use of arguments.caller or arguments.callee
         "no-case-declarations": 0,              // disallow lexical declarations in case clauses
         "no-div-regex": 0,                      // disallow division operators explicitly at the beginning of regular expressions
@@ -300,11 +300,11 @@
         "new-parens": 2,                        // require parentheses when invoking a constructor with no arguments
         "newline-per-chained-call": 0,          // require a newline after each call in a method chain
         "no-array-constructor": 2,              // disallow Array constructors
-        "no-bitwise": 2,                        // disallow bitwise operators
+        "no-bitwise": 0,                        // disallow bitwise operators
         "no-continue": 0,                       // disallow continue statements
         "no-inline-comments": 0,                // disallow inline comments after code
         "no-lonely-if": 0,                      // disallow if statements as the only statement in else blocks
-        "no-mixed-operators": 2,                // disallow mixed binary operators
+        "no-mixed-operators": 0,                // disallow mixed binary operators
         "no-mixed-spaces-and-tabs": 2,          // disallow mixed spaces and tabs for indentation
         "no-multi-assign": 2,                   // disallow use of chained assignment expressions
         "no-multiple-empty-lines": 2,           // disallow multiple empty lines

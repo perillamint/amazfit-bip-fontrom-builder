@@ -1,4 +1,6 @@
 'use strict';
+/* eslint-env browser */
+/* global EntryPoint */
 
 let fm = null;
 let bfs = null;
@@ -55,7 +57,7 @@ function refreshFontList() {
     }
 }
 
-async function loadFonts(evt) {
+async function loadFonts() {
     fm = new EntryPoint.FontManager();
     await fm.downloadFontAssets();
 
@@ -140,6 +142,7 @@ function initCanvas() {
     ctx.putImageData(imageData, 0, 0);
 }
 
+/* exported init */
 async function init() {
     initCanvas();
     await loadFonts();
@@ -189,10 +192,10 @@ async function loadROM() {
             await fm.addVendorFont(romfile, romfile.name, romname);
             break;
         case 'latin':
-            await fm.addLatinFont(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
+            await fm.addLatinFont(romfile, romfile.name, romname, parseInt(romwidth, 10), parseInt(romheight, 10));
             break;
         case 'dkb844':
-            await fm.addDKB844Font(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
+            await fm.addDKB844Font(romfile, romfile.name, romname, parseInt(romwidth, 10), parseInt(romheight, 10));
             break;
         case 'fontx':
             await fm.addFontXFont(romfile, romfile.name, romname);
