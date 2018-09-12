@@ -146,7 +146,7 @@ async function init() {
 }
 
 async function buildROM() {
-    const rom = BipFont.packFile(bfs);
+    const rom = EntryPoint.BipFont.packFile(bfs);
     const link = document.createElement( 'a' );
     link.style.display = 'none';
     document.body.appendChild( link );
