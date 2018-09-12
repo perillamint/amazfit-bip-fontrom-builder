@@ -188,7 +188,7 @@ class EntryPoint {
                 throw new Error('ROM name cannot be empty!');
             }
 
-            if (romtype !== 'vendor' || romtype !== 'fontx') {
+            if (romtype !== 'vendor' && romtype !== 'fontx') {
                 if (isNaN(romwidth) || isNaN(romheight)) {
                     throw new Error('ROM dimension cannot be empty!');
                 }
