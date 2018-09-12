@@ -10,69 +10,80 @@
     </head>
     <body onload="entryPoint.init()">
         <a class="github-fork-ribbon" href="https://github.com/perillamint/amazfit-bip-fontrom-builder" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
-        <div class="pure-g">
-            <div class="pure-u-1-2">
-                <form class="pure-form pure-form-aligned">
-                    <fieldset>
-                        <legend>Load ROM</legend>
-                        <div class="pure-control-group">
-                            <label for="romtype">ROM Type</label>
-                            <select id="romtype">
-                                <option value="vendor">BIP base ROM</option>
-                                <option value="latin">Latin ROM</option>
-                                <option value="dkb844">Dokkaebi 844 ROM</option>
-                                <option value="fontx">FontX ROM</option>
-                            </select>
+        <div class="app">
+            <form class="pure-form pure-form-aligned">
+                <fieldset>
+                    <div class="pure-g">
+                        <div class="pure-u-1-2">
+                            <legend>Load ROM</legend>
+                            <div class="pure-control-group">
+                                <label for="romtype">ROM Type</label>
+                                <select id="romtype">
+                                    <option value="vendor">BIP base ROM</option>
+                                    <option value="latin">Latin ROM</option>
+                                    <option value="dkb844">Dokkaebi 844 ROM</option>
+                                    <option value="fontx">FontX ROM</option>
+                                </select>
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="rom">ROM File</label>
+                                <input type="file" id="rom">
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="romname">ROM Name</label>
+                                <input type="text" id="romname">
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="romwidth">Font Width</label>
+                                <input type="number" id="romwidth">
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="romheight">Font Height</label>
+                                <td><input type="number" id="romheight"></td>
+                            </div>
+                            <br>
                         </div>
-                        <div class="pure-control-group">
-                            <label for="rom">ROM File</label>
-                            <input type="file" id="rom">
+                        <div class="pure-u-1-2">
+                            <legend>Choose ROM</legend>
+                            <div class="pure-control-group">
+                                <label for="baserom">BIP Base ROM</label>
+                                <select id="baserom" onchange="entryPoint.updateFonts()"></select>
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="latinrom">Latin ROM</label>
+                                <select id="latinrom" onchange="entryPoint.updateFonts()"></select>
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="dkb844rom">DKB844 ROM</label>
+                                <select id="dkb844rom" onchange="entryPoint.updateFonts()"></select>
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="fontxrom">FontX ROM</label>
+                                <select id="fontxrom" onchange="entryPoint.updateFonts()"></select>
+                            </div>
                         </div>
-                        <div class="pure-control-group">
-                            <label for="romname">ROM Name</label>
-                            <input type="text" id="romname">
+                    </div>
+                </fieldset>
+                <fieldset class="action">
+                    <div class="pure-g">
+                        <div class="pure-u-1-2">
+                            <div class="pure-control-group action-button">
+                                <button type="button" class="pure-button pure-button-primary" id="romload" onclick="entryPoint.loadROM()">Load!</button>
+                            </div>
                         </div>
-                        <div class="pure-control-group">
-                            <label for="romwidth">Font Width</label>
-                            <input type="number" id="romwidth">
+                        <div class="pure-u-1-2">
+                            <div class="pure-control-group action-button">
+                                <button type="button" class="pure-button pure-button-primary" id="rombuild" onclick="entryPoint.buildROM()">Build!</button>
+                            </div>
                         </div>
-                        <div class="pure-control-group">
-                            <label for="romheight">Font Height</label>
-                            <td><input type="number" id="romheight"></td>
-                        </div>
-                        <button type="button" class="pure-button pure-button-primary" id="romload" onclick="entryPoint.loadROM()">Load!</button>
-                    </fieldset>
-                    <br>
-                </form>
-            </div>
-            <div class="pure-u-1-2">
-                <form class="pure-form pure-form-aligned">
-                    <fieldset>
-                        <legend>Choose ROM</legend>
-                        <div class="pure-control-group">
-                            <label for="baserom">BIP Base ROM</label>
-                            <select id="baserom" onchange="entryPoint.updateFonts()"></select>
-                        </div>
-                        <div class="pure-control-group">
-                            <label for="latinrom">Latin ROM</label>
-                            <select id="latinrom" onchange="entryPoint.updateFonts()"></select>
-                        </div>
-                        <div class="pure-control-group">
-                            <label for="dkb844rom">DKB844 ROM</label>
-                            <select id="dkb844rom" onchange="entryPoint.updateFonts()"></select>
-                        </div>
-                        <div class="pure-control-group">
-                            <label for="fontxrom">FontX ROM</label>
-                            <select id="fontxrom" onchange="entryPoint.updateFonts()"></select>
-                        </div>
-                    </fieldset>
-                    <button type="button" class="pure-button pure-button-primary" id="rombuild" onclick="entryPoint.buildROM()">Build!</button>
-                </form>
-            </div>
-        </div>
-        <div class="pure-g">
-            <div class="pure-u-1-2">
-                <textarea id="exampletext" cols="70" rows="25" class="exampletext" oninput="entryPoint.drawText()">
+                    </div>
+                </fieldset>
+            </form>
+            <div class="pure-form pure-form-aligned preview">
+                <legend>Preview</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1-2">
+                        <textarea id="exampletext" cols="70" rows="25" class="exampletext" oninput="entryPoint.drawText()">
 The quick brown fox jumps over the lazy dog.
 
 키스의 고유 조건은 입술끼리 만나야 하고 특별한 조건은 필요치 않다.
@@ -93,41 +104,46 @@ The quick brown fox jumps over the lazy dog.
 ワガヨタレゾ　ツネナラム
 ウイノオクヤマ　キョーコエテ
 アサキユメミジ　エイモセズ
-                </textarea>
+                        </textarea>
+                    </div>
+                    <div class="pure-u-1-2" style="text-align: center;">
+                        <canvas id="examplerender" width="640" height="480" class="examplerender"></canvas>
+                    </div>
+                </div>
             </div>
-            <div class="pure-u-1-2" style="text-align: center;">
-                <canvas id="examplerender" width="640" height="480" class="examplerender"></canvas>
+
+            <div class="pure-form pure-form-aligned copyright">
+                <legend>Copyright Notice</legend>
+                <div>
+                    <p>
+                        You can find license about fonts used in this project at <a href="https://github.com/perillamint/amazfit-bip-fontrom-builder/blob/master/README.md">this page</a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        Copyright (C) 2018 <a href="https://twitter.com/perillamint">perillamint</a>
+                    </p>
+
+                    <p>
+                        This program is free software: you can redistribute it and/or modify
+                        it under the terms of the GNU General Public License as published by
+                        the Free Software Foundation, either version 3 of the License, or
+                        (at your option) any later version.
+                    </p>
+
+                    <p>
+                        This program is distributed in the hope that it will be useful,
+                        but WITHOUT ANY WARRANTY; without even the implied warranty of
+                        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+                        GNU General Public License for more details.
+                    </p>
+
+                    <p>
+                        You should have received a copy of the GNU General Public License
+                        along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.
+                    </p>
+                </div>
             </div>
-        </div>
-
-        <div class="copyright">
-            <p>
-                You can find license about fonts used in this project at <a href="https://github.com/perillamint/amazfit-bip-fontrom-builder/blob/master/README.md">this page</a>
-            </p>
-        </div>
-        <div class="copyright">
-            <p>
-                Copyright (C) 2018 <a href="https://twitter.com/perillamint">perillamint</a>
-            </p>
-
-            <p>
-                This program is free software: you can redistribute it and/or modify
-                it under the terms of the GNU General Public License as published by
-                the Free Software Foundation, either version 3 of the License, or
-                (at your option) any later version.
-            </p>
-
-            <p>
-                This program is distributed in the hope that it will be useful,
-                but WITHOUT ANY WARRANTY; without even the implied warranty of
-                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-                GNU General Public License for more details.
-            </p>
-
-            <p>
-                You should have received a copy of the GNU General Public License
-                along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.
-            </p>
         </div>
     </body>
 </html>
