@@ -53,10 +53,11 @@ class FontManager {
 
         for (const i of latinfonts) {
             const fontbin = (await axios.get(`./asset/latin/${i}`, {responseType: 'arraybuffer'})).data;
+            const headersz = latinfntmeta[i].header;
             const width = latinfntmeta[i].width;
             const height = latinfntmeta[i].height;
             this._fonts.latin.push({
-                renderer: new LatinFontRenderer(Buffer.from(fontbin), 0, width, height),
+                renderer: new LatinFontRenderer(Buffer.from(fontbin), headersz, width, height),
                 filename: i,
                 name: latinfntmeta[i].name,
             });
@@ -67,10 +68,11 @@ class FontManager {
 
         for (const i of dkb844fonts) {
             const fontbin = (await axios.get(`./asset/dkb844/${i}`, {responseType: 'arraybuffer'})).data;
+            const headersz = dkb844fntmeta[i].header;
             const width = dkb844fntmeta[i].width;
             const height = dkb844fntmeta[i].height;
             this._fonts.dkb844.push({
-                renderer: new Dkb844FontRenderer(Buffer.from(fontbin), 0, width, height),
+                renderer: new Dkb844FontRenderer(Buffer.from(fontbin), headersz, width, height),
                 filename: i,
                 name: dkb844fntmeta[i].name,
             });
