@@ -152,7 +152,7 @@ async function buildROM() {
     document.body.appendChild( link );
 
 
-    const blob = new Blob( [ rom ], { type: 'application/octet-binary' } );	
+    const blob = new Blob( [ rom ], { type: 'application/octet-binary' } );
     const objectURL = URL.createObjectURL( blob );
 
     link.href = objectURL;
