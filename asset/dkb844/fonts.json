@@ -1,76 +1,91 @@
 {
     "H01.FNT": {
         "name": "굵은달꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H02.FNT": {
         "name": "가는달꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H03.FNT": {
         "name": "버금달꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H04.FNT": {
         "name": "둥근모꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H05.FNT": {
         "name": "짧은둥근모꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H06.FNT": {
         "name": "뫼꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H07.FNT": {
         "name": "짧은뫼꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H08.FNT": {
         "name": "중태세모꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H09.FNT": {
         "name": "뻗음꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H10.FNT": {
         "name": "짧은뻗음꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H11.FNT": {
         "name": "삐침꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H12.FNT": {
         "name": "작은삐침꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H13.FNT": {
         "name": "풀잎꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H14.FNT": {
         "name": "대나무꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     },
     "H15.FNT": {
         "name": "포갬꼴",
+        "header": 0,
         "width": 16,
         "height": 16
     }
