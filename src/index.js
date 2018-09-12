@@ -166,7 +166,7 @@ class EntryPoint {
 
         link.href = objectURL;
         link.href = URL.createObjectURL(blob);
-        link.download = 'font.ft';
+        link.download = document.getElementById('savefilename').value;
         link.click();
         link.remove();
     }
