@@ -19,9 +19,9 @@ class BipFont {
 
         for (let i = 0; i < rangesCnt; i++) {
             const elem = {
-                start: bin.readUInt16LE(0x22 + i*6),
-                end: bin.readUInt16LE(0x24 + i*6),
-                seq: bin.readUInt16LE(0x26 + i*6),
+                start: bin.readUInt16LE(0x22 + i * 6),
+                end: bin.readUInt16LE(0x24 + i * 6),
+                seq: bin.readUInt16LE(0x26 + i * 6),
             };
 
             ranges.push(elem);
@@ -46,7 +46,7 @@ class BipFont {
     static packFile(bitmapFontStorage) {
         assert.strictEqual(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
 
-        const glyphs = bitmapFontStorage.getAllGlyphs()
+        const glyphs = bitmapFontStorage.getAllGlyphs();
         const codepoints = Object.keys(glyphs).sort((a, b) => {
             const an = parseInt(a);
             const bn = parseInt(b);
@@ -75,11 +75,11 @@ class BipFont {
                 body[offset * 33 + j] = glyph.getData()[j];
             }
             body[offset * 33 + 32] = padding;
-            offset ++;
+            offset++;
 
             if (codepoints[i + 1] == null || codepoints[i] + 1 !== codepoints[i + 1]) {
                 // End of continuous block
-                blkcnt ++;
+                blkcnt++;
                 const blkEntry = Buffer.alloc(6);
                 blkEntry.writeUInt16LE(blkstart, 0);
                 blkEntry.writeUInt16LE(codepoints[i], 2);

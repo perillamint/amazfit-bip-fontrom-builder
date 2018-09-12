@@ -9,7 +9,7 @@ const BitmapFontStorage = require('./src/BitmapFontStorage.js');
 const FontVisualizer = require('./src/FontVisualizer.js');
 
 function renderAndAddGlyph(bfs, renderer, start, end) {
-    for(let i = start; i <= end; i++) {
+    for (let i = start; i <= end; i++) {
         try {
             const bin = renderer.renderChar(i);
             bfs.addGlyph(i, bin, 4, renderer.getDimension().width);

@@ -14,7 +14,7 @@ class FontXFontRenderer extends FontRenderer {
         super(width, height);
 
         this._fontbin = font;
-        
+
 
         const header = {};
         header.fontname = font.slice(0x06, 0x0E).toString('UTF-8');
@@ -27,7 +27,7 @@ class FontXFontRenderer extends FontRenderer {
         const blkcnt = font.slice(0x11, 0x12)[0];
         const blocks = [];
         let offset = 0x12;
-        for(let i = 0; i < blkcnt; i++) {
+        for (let i = 0; i < blkcnt; i++) {
             blocks[i] = {
                 start: font.readUInt16LE(offset),
                 end: font.readUInt16LE(offset + 2),

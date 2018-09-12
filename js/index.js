@@ -4,7 +4,7 @@ let fm = null;
 let bfs = null;
 
 function renderAndAddGlyph(bfs, renderer, start, end) {
-    for(let i = start; i <= end; i++) {
+    for (let i = start; i <= end; i++) {
         try {
             const bin = renderer.renderChar(i);
             bfs.addGlyph(i, bin, 4, renderer.getDimension().width);
@@ -13,7 +13,7 @@ function renderAndAddGlyph(bfs, renderer, start, end) {
 }
 
 function childCleaner(elem) {
-    while(elem.firstChild) {
+    while (elem.firstChild) {
         elem.removeChild(elem.firstChild);
     }
 }
@@ -132,9 +132,9 @@ function initCanvas() {
     const data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-        data[i]     = 0;   // red
-        data[i + 1] = 0;   // green
-        data[i + 2] = 0;   // blue
+        data[i] = 0; // red
+        data[i + 1] = 0; // green
+        data[i + 2] = 0; // blue
         data[i + 3] = 255; // alpha
     }
     ctx.putImageData(imageData, 0, 0);
@@ -147,16 +147,16 @@ async function init() {
 
 async function buildROM() {
     const rom = EntryPoint.BipFont.packFile(bfs);
-    const link = document.createElement( 'a' );
+    const link = document.createElement('a');
     link.style.display = 'none';
-    document.body.appendChild( link );
+    document.body.appendChild(link);
 
 
-    const blob = new Blob( [ rom ], { type: 'application/octet-binary' } );
-    const objectURL = URL.createObjectURL( blob );
+    const blob = new Blob([rom], {type: 'application/octet-binary'});
+    const objectURL = URL.createObjectURL(blob);
 
     link.href = objectURL;
-    link.href = URL.createObjectURL( blob );
+    link.href = URL.createObjectURL(blob);
     link.download = 'font.ft';
     link.click();
     link.remove();
@@ -184,19 +184,19 @@ async function loadROM() {
             }
         }
 
-        switch(romtype) {
-            case 'vendor':
-                await fm.addVendorFont(romfile, romfile.name, romname);
-                break;
-            case 'latin':
-                await fm.addLatinFont(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
-                break;
-            case 'dkb844':
-                await fm.addDKB844Font(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
-                break;
-            case 'fontx':
-                await fm.addFontXFont(romfile, romfile.name, romname);
-                break;
+        switch (romtype) {
+        case 'vendor':
+            await fm.addVendorFont(romfile, romfile.name, romname);
+            break;
+        case 'latin':
+            await fm.addLatinFont(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
+            break;
+        case 'dkb844':
+            await fm.addDKB844Font(romfile, romfile.name, romname, parseInt(romwidth), parseInt(romheight));
+            break;
+        case 'fontx':
+            await fm.addFontXFont(romfile, romfile.name, romname);
+            break;
         }
     } catch (e) {
         alert(e.message);

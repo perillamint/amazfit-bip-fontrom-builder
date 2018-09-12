@@ -1,6 +1,6 @@
 'use strict';
 
-const BitmapFontGlyph = require('./BitmapFontGlyph.js')
+const BitmapFontGlyph = require('./BitmapFontGlyph.js');
 const BipFont = require('./BipFont.js');
 const assert = require('assert');
 
