@@ -16,5 +16,6 @@ deploy:
   provider: pages
   target-branch: gh-pages
   skip-cleanup: true
+  fqdn: bipfont.quendi.moe
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: false
