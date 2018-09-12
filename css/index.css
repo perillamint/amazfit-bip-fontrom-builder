@@ -37,6 +37,7 @@ input {
 
 .examplerender {
     object-fit: contain;
+    padding-top: 50px;
 }
 
 @font-face {
