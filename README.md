@@ -2,7 +2,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.org/perillamint/amazfit-bip-fontrom-builder.svg?branch=master)](https://travis-ci.org/perillamint/amazfit-bip-fontrom-builder)
 
-HTML5 FontROM builder for Xiaomi Amazfit Bip.
+HTML5 FontROM builder for Xiaomi Amazfit Bip. <https://bipfont.quendi.moe>
 
 Runs on premise with Node.JS, or served as serverless web application.
 
