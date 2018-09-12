@@ -102,19 +102,19 @@ class FontManager {
         });
     }
 
-    async addLatinFont(file, filename, name, width, height) {
+    async addLatinFont(file, filename, name, headersz, width, height) {
         const bin = await this._fileToArrayBuffer(file);
         this._fonts.latin.push({
-            renderer: new LatinFontRenderer(Buffer.from(bin), width, height),
+            renderer: new LatinFontRenderer(Buffer.from(bin), headersz, width, height),
             filename: filename,
             name: name,
         });
     }
 
-    async addDKB844Font(file, filename, name, width, height) {
+    async addDKB844Font(file, filename, name, headersz, width, height) {
         const bin = await this._fileToArrayBuffer(file);
         this._fonts.dkb844.push({
-            renderer: new Dkb844FontRenderer(Buffer.from(bin), width, height),
+            renderer: new Dkb844FontRenderer(Buffer.from(bin), headersz, width, height),
             filename: filename,
             name: name,
         });

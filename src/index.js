@@ -175,8 +175,9 @@ class EntryPoint {
         const romtype = document.getElementById('romtype').value;
         const romfile = document.getElementById('rom').files[0];
         const romname = document.getElementById('romname').value;
-        const romwidth = document.getElementById('romwidth').value;
-        const romheight = document.getElementById('romheight').value;
+        const romwidth = parseInt(document.getElementById('romwidth').value, 10);
+        const romheight = parseInt(document.getElementById('romheight').value, 10);
+        const romheader = parseInt(document.getElementById('romheader').value, 10);
 
         try {
             if (romfile == null) {
@@ -188,8 +189,12 @@ class EntryPoint {
             }
 
             if (romtype !== 'vendor' || romtype !== 'fontx') {
-                if (romwidth === '' || romheight === '') {
+                if (isNaN(romwidth) || isNaN(romheight)) {
                     throw new Error('ROM dimension cannot be empty!');
+                }
+
+                if (isNaN(romheader)) {
+                    throw new Error('ROM header size cannot be empty!');
                 }
             }
 
@@ -198,10 +203,10 @@ class EntryPoint {
                 await this._fm.addVendorFont(romfile, romfile.name, romname);
                 break;
             case 'latin':
-                await this._fm.addLatinFont(romfile, romfile.name, romname, parseInt(romwidth, 10), parseInt(romheight, 10));
+                await this._fm.addLatinFont(romfile, romfile.name, romname, romheader, romwidth, romheight);
                 break;
             case 'dkb844':
-                await this._fm.addDKB844Font(romfile, romfile.name, romname, parseInt(romwidth, 10), parseInt(romheight, 10));
+                await this._fm.addDKB844Font(romfile, romfile.name, romname, romheader, romwidth, romheight);
                 break;
             case 'fontx':
                 await this._fm.addFontXFont(romfile, romfile.name, romname);
