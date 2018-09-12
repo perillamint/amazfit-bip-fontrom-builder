@@ -124,7 +124,7 @@ class FontManager {
 
     async addFontXFont(file, filename, name) {
         const bin = await this._fileToArrayBuffer(file);
-        this._fonts.dkb844.push({
+        this._fonts.fontx.push({
             renderer: new FontXFontRenderer(Buffer.from(bin)),
             filename: filename,
             name: name,
