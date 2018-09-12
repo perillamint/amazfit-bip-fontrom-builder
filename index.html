@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
        <link rel="stylesheet" type="text/css" href="css/index.css">
     </head>
-    <body onload="init()">
+    <body onload="entryPoint.init()">
         <a class="github-fork-ribbon" href="https://github.com/perillamint/amazfit-bip-fontrom-builder" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
         <div class="pure-g">
             <div class="pure-u-1-2">
@@ -41,7 +41,7 @@
                             <label for="romheight">Font Height</label>
                             <td><input type="number" id="romheight"></td>
                         </div>
-                        <button type="button" class="pure-button pure-button-primary" id="romload" onclick="loadROM()">Load!</button>
+                        <button type="button" class="pure-button pure-button-primary" id="romload" onclick="entryPoint.loadROM()">Load!</button>
                     </fieldset>
                     <br>
                 </form>
@@ -52,28 +52,28 @@
                         <legend>Choose ROM</legend>
                         <div class="pure-control-group">
                             <label for="baserom">BIP Base ROM</label>
-                            <select id="baserom" onchange="updateFonts()"></select>
+                            <select id="baserom" onchange="entryPoint.updateFonts()"></select>
                         </div>
                         <div class="pure-control-group">
                             <label for="latinrom">Latin ROM</label>
-                            <select id="latinrom" onchange="updateFonts()"></select>
+                            <select id="latinrom" onchange="entryPoint.updateFonts()"></select>
                         </div>
                         <div class="pure-control-group">
                             <label for="dkb844rom">DKB844 ROM</label>
-                            <select id="dkb844rom" onchange="updateFonts()"></select>
+                            <select id="dkb844rom" onchange="entryPoint.updateFonts()"></select>
                         </div>
                         <div class="pure-control-group">
                             <label for="fontxrom">FontX ROM</label>
-                            <select id="fontxrom" onchange="updateFonts()"></select>
+                            <select id="fontxrom" onchange="entryPoint.updateFonts()"></select>
                         </div>
                     </fieldset>
-                    <button type="button" class="pure-button pure-button-primary" id="rombuild" onclick="buildROM()">Build!</button>
+                    <button type="button" class="pure-button pure-button-primary" id="rombuild" onclick="entryPoint.buildROM()">Build!</button>
                 </form>
             </div>
         </div>
         <div class="pure-g">
             <div class="pure-u-1-2">
-                <textarea id="exampletext" cols="70" rows="25" class="exampletext" oninput="drawText()">
+                <textarea id="exampletext" cols="70" rows="25" class="exampletext" oninput="entryPoint.drawText()">
 The quick brown fox jumps over the lazy dog.
 
 키스의 고유 조건은 입술끼리 만나야 하고 특별한 조건은 필요치 않다.
