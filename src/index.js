@@ -111,6 +111,11 @@ class EntryPoint {
         ctx.putImageData(imageData, 0, 0);
     }
 
+    async init() {
+        this._initCanvas();
+        await this._loadFonts();
+    }
+
     updateFonts() {
         const latinromidx = document.getElementById('latinrom').value;
         const dkbromidx = document.getElementById('dkb844rom').value;
@@ -147,11 +152,6 @@ class EntryPoint {
                 }
             }
         }
-    }
-
-    async init() {
-        this._initCanvas();
-        await this._loadFonts();
     }
 
     async buildROM() {
