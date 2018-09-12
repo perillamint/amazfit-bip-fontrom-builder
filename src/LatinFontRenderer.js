@@ -1,8 +1,8 @@
 'use strict';
 
-const FontRenderer = require('./fontrenderer.js');
+const FontRenderer = require('./FontRenderer.js');
 
-class LatinRenderer extends FontRenderer {
+class LatinFontRenderer extends FontRenderer {
     constructor(font, width, height) {
         super(width, height);
 
@@ -38,4 +38,4 @@ class LatinRenderer extends FontRenderer {
     }
 }
 
-module.exports = LatinRenderer;
+module.exports = LatinFontRenderer;

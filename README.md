@@ -13,6 +13,7 @@ you are browsing in a clone or a fork.
 * [webpack](https://www.npmjs.com/package/webpack)
 * [iconv-lite](https://www.npmjs.com/package/iconv-lite)
 * [axios](https://www.npmjs.com/package/axios)
+* [assert](https://www.npmjs.com/package/assert)
 
 ## How to build
 

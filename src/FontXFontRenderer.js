@@ -1,9 +1,9 @@
 'use strict';
 
-const FontRenderer = require('./fontrenderer.js');
+const FontRenderer = require('./FontRenderer.js');
 const iconv = require('iconv-lite');
 
-class FontXRenderer extends FontRenderer {
+class FontXFontRenderer extends FontRenderer {
     constructor(font) {
         if (font.slice(0x00, 0x06).toString('UTF-8') !== 'FONTX2') {
             throw new Error('Invalid magic!');
@@ -88,4 +88,4 @@ class FontXRenderer extends FontRenderer {
     }
 }
 
-module.exports = FontXRenderer;
+module.exports = FontXFontRenderer;

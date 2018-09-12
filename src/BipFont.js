@@ -1,13 +1,18 @@
 'use strict';
 
-class BIPFont {
+const BitmapFontStorage = require('./BitmapFontStorage.js');
+const assert = require('assert');
+
+class BipFont {
     static unpackFile(bin) {
+        assert.strictEqual(bin.constructor.name, 'Buffer');
+
         const magic = bin.readUInt32BE(0);
         if (magic !== 0x4E455A4b) {
             throw new Error('Invalid magic');
         }
 
-        const fonts = {};
+        const bitmapFontStorage = new BitmapFontStorage();
         const ranges = [];
 
         const rangesCnt = bin.readUInt16LE(0x20);
@@ -25,24 +30,24 @@ class BIPFont {
         let off = 0x22 + 0x06 * ranges.length;
         for (const elem of ranges) {
             for (let i = elem.start; i <= elem.end; i++) {
-                const font = bin.slice(off, off + 32);
-                const margin_top = bin[off + 32] & 0x0F;
+                const buf = bin.slice(off, off + 32);
+                const marginTop = bin[off + 32] & 0x0F;
                 const width = bin[off + 32] >> 4;
                 off += 33;
 
-                fonts[i] = {
-                    data: font,
-                    margin_top: margin_top,
-                    width: width + 1,
-                };
+                bitmapFontStorage.addGlyph(i, buf, marginTop, width);
             }
         }
 
-        return fonts;
+        assert.strictEqual(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
+        return bitmapFontStorage;
     }
 
-    static packFile(fontmap) {
-        const codepoints = Object.keys(fontmap).sort((a, b) => {
+    static packFile(bitmapFontStorage) {
+        assert.strictEqual(bitmapFontStorage.constructor.name, 'BitmapFontStorage');
+
+        const glyphs = bitmapFontStorage.getAllGlyphs()
+        const codepoints = Object.keys(glyphs).sort((a, b) => {
             const an = parseInt(a);
             const bn = parseInt(b);
 
@@ -59,15 +64,15 @@ class BIPFont {
         let seqcnt = 0;
         let offset = 0;
         for (let i = 0; i < codepoints.length; i++) {
-            const font = fontmap[codepoints[i]];
+            const glyph = glyphs[codepoints[i]];
 
-            if (font.data.length != 32) {
-                throw new Error('Invalid font binary');
+            if (glyph.getData().length != 32) {
+                throw new Error('Invalid glyph binary');
             }
 
-            const padding = (((font.width - 1) << 4) + (font.margin_top & 0x0F)) & 0xFF;
+            const padding = (((glyph.getWidth() - 1) << 4) + (glyph.getMarginTop() & 0x0F)) & 0xFF;
             for (let j = 0; j < 32; j++) {
-                body[offset * 33 + j] = font.data[j];
+                body[offset * 33 + j] = glyph.getData()[j];
             }
             body[offset * 33 + 32] = padding;
             offset ++;
@@ -87,9 +92,11 @@ class BIPFont {
 
         header.writeUInt16LE(blkcnt, 0x20);
 
-        return Buffer.concat([header, body]);
+        const retBuf = Buffer.concat([header, body]);
+
+        assert.strictEqual(retBuf.constructor.name, 'Buffer');
+        return retBuf;
     }
 }
 
-module.exports = BIPFont;
-
+module.exports = BipFont;
