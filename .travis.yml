@@ -4,6 +4,7 @@ node_js:
 install:
   - npm install
 script:
+  - npm run test
   - npm run build
   - rm -f dist/.gitignore
 deploy:
