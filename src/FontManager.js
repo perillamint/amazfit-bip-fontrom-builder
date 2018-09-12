@@ -56,7 +56,7 @@ class FontManager {
             const width = latinfntmeta[i].width;
             const height = latinfntmeta[i].height;
             this._fonts.latin.push({
-                renderer: new LatinFontRenderer(Buffer.from(fontbin), width, height),
+                renderer: new LatinFontRenderer(Buffer.from(fontbin), 0, width, height),
                 filename: i,
                 name: latinfntmeta[i].name,
             });
@@ -70,7 +70,7 @@ class FontManager {
             const width = dkb844fntmeta[i].width;
             const height = dkb844fntmeta[i].height;
             this._fonts.dkb844.push({
-                renderer: new Dkb844FontRenderer(Buffer.from(fontbin), width, height),
+                renderer: new Dkb844FontRenderer(Buffer.from(fontbin), 0, width, height),
                 filename: i,
                 name: dkb844fntmeta[i].name,
             });
