@@ -5,6 +5,7 @@ install:
   - npm install
 script:
   - npm run build
+  - rm -f dist/.gitignore
 deploy:
   provider: pages
   target-branch: gh-pages
