@@ -1,11 +1,13 @@
 'use strict';
+/* eslint no-sync: 0 */
+/* eslint no-process-exit: 0 */
 
 const fs = require('fs');
 const BipFont = require('./src/BipFont.js');
 const Dkb844FontRenderer = require('./src/Dkb844FontRenderer.js');
 const LatinFontRenderer = require('./src/LatinFontRenderer.js');
 const FontXFontRenderer = require('./src/FontXFontRenderer.js');
-const BitmapFontStorage = require('./src/BitmapFontStorage.js');
+//const BitmapFontStorage = require('./src/BitmapFontStorage.js');
 const FontVisualizer = require('./src/FontVisualizer.js');
 
 function renderAndAddGlyph(bfs, renderer, start, end) {

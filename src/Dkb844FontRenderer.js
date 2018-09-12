@@ -50,7 +50,7 @@ class Dkb844FontRenderer extends FontRenderer {
     }
 
     _grabChar(off) {
-        const {width, height} = this.getDimension();
+        const {height} = this.getDimension();
         const byteWidth = this.getByteWidth();
         const characterByte = byteWidth * height;
 
@@ -58,7 +58,7 @@ class Dkb844FontRenderer extends FontRenderer {
     }
 
     renderChar(code) {
-        const {width, height} = this.getDimension();
+        const {height} = this.getDimension();
         const byteWidth = this.getByteWidth();
         const characterByte = byteWidth * height;
 

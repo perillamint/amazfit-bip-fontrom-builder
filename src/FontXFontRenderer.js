@@ -9,8 +9,8 @@ class FontXFontRenderer extends FontRenderer {
             throw new Error('Invalid magic!');
         }
 
-        let width = font.slice(0x0E, 0x0F)[0];
-        let height = font.slice(0x0F, 0x10)[0];
+        const width = font.slice(0x0E, 0x0F)[0];
+        const height = font.slice(0x0F, 0x10)[0];
         super(width, height);
 
         this._fontbin = font;
@@ -53,7 +53,7 @@ class FontXFontRenderer extends FontRenderer {
     }
 
     _grabChar(baseoff, off) {
-        const {width, height} = this.getDimension();
+        const {height} = this.getDimension();
         const byteWidth = this.getByteWidth();
         const characterByte = byteWidth * height;
 
@@ -63,7 +63,7 @@ class FontXFontRenderer extends FontRenderer {
     renderChar(code) {
         const jisstr = iconv.encode(String.fromCharCode(code), 'Shift-JIS');
 
-        if (jisstr.length != 2) {
+        if (jisstr.length !== 2) {
             throw new Error('Unsupported character!');
         }
 
@@ -73,7 +73,7 @@ class FontXFontRenderer extends FontRenderer {
             throw new Error('Unsupported character!');
         }
 
-        const {width, height} = this.getDimension();
+        const {height} = this.getDimension();
         const byteWidth = this.getByteWidth();
         const characterByte = byteWidth * height;
 

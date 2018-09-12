@@ -1,4 +1,5 @@
 'use strict';
+/* global FileReader */
 
 const axios = require('axios');
 const Dkb844FontRenderer = require('./Dkb844FontRenderer.js');
@@ -16,7 +17,7 @@ class FontManager {
     }
 
     async _fileToArrayBuffer(file) {
-        return await new Promise((ful, rej) => {
+        return await new Promise((ful, _rej) => {
             const fileReader = new FileReader();
             fileReader.onload = (evt) => {
                 ful(evt.target.result);

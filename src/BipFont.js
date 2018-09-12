@@ -48,12 +48,12 @@ class BipFont {
 
         const glyphs = bitmapFontStorage.getAllGlyphs();
         const codepoints = Object.keys(glyphs).sort((a, b) => {
-            const an = parseInt(a);
-            const bn = parseInt(b);
+            const an = parseInt(a, 10);
+            const bn = parseInt(b, 10);
 
             return an < bn ? -1 : (an > bn ? 1 : 0);
         }).map((x) => {
-            return parseInt(x);
+            return parseInt(x, 10);
         });
 
         let header = Buffer.from('4E455A4B08FFFFFFFFFF01000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000', 'hex');
@@ -66,7 +66,7 @@ class BipFont {
         for (let i = 0; i < codepoints.length; i++) {
             const glyph = glyphs[codepoints[i]];
 
-            if (glyph.getData().length != 32) {
+            if (glyph.getData().length !== 32) {
                 throw new Error('Invalid glyph binary');
             }
 
