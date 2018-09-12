@@ -15,10 +15,10 @@ const jongLookup = [0, 0, 2, 0, 2, 1, 2, 1, 2, 3, 0, 2, 1, 3, 3, 1, 2, 1, 3, 3, 
 const compatChoIdxLookup = [1, 2, 0, 3, 0, 0, 4, 5, 6, 0, 0, 0, 0, 0, 0, 0, 7, 8, 9, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 
 class Dkb844FontRenderer extends FontRenderer {
-    constructor(font, width, height) {
+    constructor(font, headersz, width, height) {
         super(width, height);
 
-        this._fontbin = font;
+        this._fontbin = font.slice(headersz, font.length);
         this._choSet = [];
         this._jungSet = [];
         this._jongSet = [];

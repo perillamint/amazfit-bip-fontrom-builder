@@ -3,10 +3,10 @@
 const FontRenderer = require('./FontRenderer.js');
 
 class LatinFontRenderer extends FontRenderer {
-    constructor(font, width, height) {
+    constructor(font, headersz, width, height) {
         super(width, height);
 
-        this._fontbin = font;
+        this._fontbin = font.slice(headersz, font.length);
         this._fonts = [];
 
         for (let i = 0; i < 0xFF; i++) {
