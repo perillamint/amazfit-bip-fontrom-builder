@@ -6,6 +6,7 @@ const BipFont = require('./BipFont.js');
 const BitmapFontStorage = require('./BitmapFontStorage.js');
 const FontManager = require('./FontManager.js');
 const FontVisualizer = require('./FontVisualizer.js');
+const WebUtil = require('./util.js');
 
 class EntryPoint {
     constructor() {
@@ -72,13 +73,13 @@ class EntryPoint {
         this.updateFonts();
     }
 
-    _renderFonts(latinidx, dkbidx, fontxidx) {
+    async _renderFonts(latinidx, dkbidx, fontxidx) {
         const fonts = this._fm.getFontList();
-        this._bfs = BipFont.unpackFile(fonts.vendor[0].binary);
+        this._bfs = BipFont.unpackFile(await fonts.vendor[0].getBinary());
 
-        const latin = fonts.latin[latinidx].renderer;
-        const dkb = fonts.dkb844[dkbidx].renderer;
-        const fontx = fonts.fontx[fontxidx].renderer;
+        const latin = await fonts.latin[latinidx].getRenderer();
+        const dkb = await fonts.dkb844[dkbidx].getRenderer();
+        const fontx = await fonts.fontx[fontxidx].getRenderer();
 
         this._renderAndAddGlyph(this._bfs, latin, 0x0000, 0x007F);
 
@@ -116,12 +117,12 @@ class EntryPoint {
         await this._loadFonts();
     }
 
-    updateFonts() {
+    async updateFonts() {
         const latinromidx = document.getElementById('latinrom').value;
         const dkbromidx = document.getElementById('dkb844rom').value;
         const fontxromidx = document.getElementById('fontxrom').value;
 
-        this._renderFonts(latinromidx, dkbromidx, fontxromidx);
+        await this._renderFonts(latinromidx, dkbromidx, fontxromidx);
         this.drawText();
     }
 
@@ -198,20 +199,8 @@ class EntryPoint {
                 }
             }
 
-            switch (romtype) {
-            case 'vendor':
-                await this._fm.addVendorFont(romfile, romfile.name, romname);
-                break;
-            case 'latin':
-                await this._fm.addLatinFont(romfile, romfile.name, romname, romheader, romwidth, romheight);
-                break;
-            case 'dkb844':
-                await this._fm.addDKB844Font(romfile, romfile.name, romname, romheader, romwidth, romheight);
-                break;
-            case 'fontx':
-                await this._fm.addFontXFont(romfile, romfile.name, romname);
-                break;
-            }
+            const fontblob = WebUtil.fileToBuffer(romfile);
+            await this._fm.addFont(romtype, fontblob, romfile.name, romname, romheader, romwidth, romheight);
         } catch (e) {
             alert(e.message);
             return;
