@@ -50,3 +50,4 @@ so they are distributed under license terms of each font asset.
 * Kimjoongtae fonts - Public domain
 * Bm437_IBM_PS2thin4.F16 - CC-BY-SA 4.0 https://int10h.org/oldschool-pc-fonts/
 * 04GZN16X.FNT - GNU GPL v2 http://dos.minashiro.net/freedosvd.html
+* `ILM*.FNT` and `ILG*.FNT` - [IPA Font License Agreement v1.0](IPA_Font_License_Agreement_v1.0.txt) http://ayati.cocolog-nifty.com/blog/2012/08/index.html
