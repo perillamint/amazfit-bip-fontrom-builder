@@ -1,5 +1,17 @@
 {
     "04GZN16X.FNT": {
         "name": "IZMG-N04"
+    },
+    "ILGZ16XB.FNT": {
+        "name": "ILGZ16XB-Sans serif, thin"
+    },
+    "ILGZ16XF.FNT": {
+        "name": "ILGZ16XF-Sans serif, bold"
+    },
+    "ILMZ16XB.FNT": {
+        "name": "ILMZ16XB-Serif, thin"
+    },
+    "ILMZ16XF.FNT": {
+        "name": "ILMZ16XF-Serif, bold"
     }
 }
