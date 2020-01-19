@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - '10'
+
+stages:
+  - name: deploy
+    if: branch = master
+
+install:
+  - npm install
+script:
+  - npm run test
+  - npm run build
+  - rm -f dist/.gitignore
+deploy:
+  provider: pages
+  target-branch: gh-pages
+  skip-cleanup: true
+  fqdn: bipfont.quendi.moe
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: false

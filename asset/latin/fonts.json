@@ -1,0 +1,62 @@
+{
+    "E1.FNT": {
+        "name": "굵은멋꼴",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E2.FNT": {
+        "name": "둥근모꼴",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E3.FNT": {
+        "name": "버금멋꼴",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E4_2.FNT": {
+        "name": "버금멋꼴2",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E4_3.FNT": {
+        "name": "버금멋꼴3",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E5.FNT": {
+        "name": "틈멋꼴",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E6.FNT": {
+        "name": "중태깍기꼴",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "E8.FNT": {
+        "name": "중태세모꼴",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "VGA-ROM.F16": {
+        "name": "VGA ROM BIOS",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    },
+    "Bm437_IBM_PS2thin4.F16": {
+        "name": "IBM PS/2thin4",
+        "header": 0,
+        "width": 8,
+        "height": 16
+    }
+}
