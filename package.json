@@ -4,7 +4,7 @@
   "description": "HTML5 FontROM builder for Xiaomi Amazfit Bip",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "iconv-lite": "^0.4.24",
     "assert": "^1.4.1",
     "webpack": "^4.18.0",
